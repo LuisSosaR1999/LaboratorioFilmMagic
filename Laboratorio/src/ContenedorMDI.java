@@ -1,6 +1,7 @@
 
 import Mantenimientos.MantenimientoCliente;
 import Mantenimientos.MantenimientoProducto;
+import Mantenimientos.MantenimientoVideoJuegos;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,6 +39,7 @@ public class ContenedorMDI extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -66,13 +68,21 @@ public class ContenedorMDI extends javax.swing.JFrame {
         jMenu1.add(jCheckBoxMenuItem1);
 
         jCheckBoxMenuItem2.setSelected(true);
-        jCheckBoxMenuItem2.setText("Mantenimiento De Productos            ");
+        jCheckBoxMenuItem2.setText("Mantenimiento De Peliculas            ");
         jCheckBoxMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxMenuItem2ActionPerformed(evt);
             }
         });
         jMenu1.add(jCheckBoxMenuItem2);
+
+        jMenuItem2.setText("Mantenimiento de VideoJuegos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
 
@@ -125,6 +135,16 @@ public class ContenedorMDI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jCheckBoxMenuItem2ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        
+        MantenimientoVideoJuegos frm2= new MantenimientoVideoJuegos();
+        frm2.setVisible(true);
+        this.setVisible(false);
+        
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -169,5 +189,6 @@ public class ContenedorMDI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }

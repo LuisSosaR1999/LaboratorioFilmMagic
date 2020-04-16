@@ -16,12 +16,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author lsosa
  */
-public class MantenimientoProducto extends javax.swing.JFrame {
+public class MantenimientoVideoJuegos extends javax.swing.JFrame {
 
     /**
      * Creates new form MantenimientoProducto
      */
-    public MantenimientoProducto() {
+    public MantenimientoVideoJuegos() {
         initComponents();
     }
 
@@ -39,7 +39,7 @@ public class MantenimientoProducto extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtAutorPelicula = new javax.swing.JTextField();
+        txtAutor = new javax.swing.JTextField();
         txtNombreProducto = new javax.swing.JTextField();
         txtCategoria = new javax.swing.JTextField();
         txtClasificacion = new javax.swing.JTextField();
@@ -50,17 +50,17 @@ public class MantenimientoProducto extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtBuscarP = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDatos2 = new javax.swing.JTable();
+        tblDatos3 = new javax.swing.JTable();
         label_status = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Mantenimiento Producto");
+        jLabel1.setText("Mantenimiento VideoJuegos");
 
-        jLabel2.setText("Autor");
+        jLabel2.setText("Autor:");
 
-        jLabel3.setText("Nombre Pelicula ");
+        jLabel3.setText("Nombre VideoJuego");
 
         jLabel4.setText("Categoria:");
 
@@ -91,15 +91,15 @@ public class MantenimientoProducto extends javax.swing.JFrame {
 
         jLabel6.setText("Buscar");
 
-        tblDatos2.setModel(new javax.swing.table.DefaultTableModel(
+        tblDatos3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Autor", "NombrePelicula", "Categoria", "Clasificacion"
+                "Autor", "NombreVideoJuego", "Categoria", "Clasificacion"
             }
         ));
-        jScrollPane1.setViewportView(tblDatos2);
+        jScrollPane1.setViewportView(tblDatos3);
 
         jButton5.setText("Fechas");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -115,22 +115,23 @@ public class MantenimientoProducto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel3))
-                        .addGap(81, 81, 81)
+                        .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombreProducto)
                             .addComponent(txtCategoria)
-                            .addComponent(txtAutorPelicula)
-                            .addComponent(txtClasificacion))))
-                .addGap(55, 55, 55)
+                            .addComponent(txtAutor)
+                            .addComponent(txtClasificacion))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)))
                 .addComponent(jLabel6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -153,8 +154,8 @@ public class MantenimientoProducto extends javax.swing.JFrame {
                 .addComponent(jButton4)
                 .addGap(76, 76, 76))
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -164,33 +165,37 @@ public class MantenimientoProducto extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtAutorPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtClasificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)))
-                    .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4)
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1)
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(txtBuscarP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(6, 6, 6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtBuscarP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtClasificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
@@ -200,9 +205,9 @@ public class MantenimientoProducto extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jButton5)))
-                .addGap(9, 9, 9)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,17 +217,17 @@ public class MantenimientoProducto extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD1?useSSL=false", "root", "lfsr1999");
-            PreparedStatement pst = cn.prepareStatement("insert into MantenimientoPeliculas values(?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("insert into MantenimientoProductos values(?,?,?,?)");
             
             pst.setString(1, "0");
-            pst.setString(2, txtAutorPelicula.getText().trim());
+            pst.setString(2, txtAutor.getText().trim());
             pst.setString(3, txtNombreProducto.getText().trim());
             pst.setString(4, txtCategoria.getText().trim());
             pst.setString(5, txtClasificacion.getText().trim());
            
             pst.executeUpdate();
             
-            txtAutorPelicula.setText("");
+            txtAutor.setText("");
             txtNombreProducto.setText("");
             txtCategoria.setText("");
             txtClasificacion.setText("");
@@ -232,15 +237,15 @@ public class MantenimientoProducto extends javax.swing.JFrame {
         }catch (Exception e){
             
         }
-          DefaultTableModel modelo = (DefaultTableModel) tblDatos2.getModel();
+          DefaultTableModel modelo = (DefaultTableModel) tblDatos3.getModel();
         Object  [] fila=new Object [4];
-        fila[0]=txtAutorPelicula.getText();
+        fila[0]=txtAutor.getText();
         fila[1]=txtNombreProducto.getText();
         fila[2]=txtCategoria.getText();
         fila[3]=txtClasificacion.getText();
         
         modelo.addRow(fila);
-        tblDatos2.setModel(modelo);
+        tblDatos3.setModel(modelo);
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -248,11 +253,11 @@ public class MantenimientoProducto extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-          try{ String Pelicula = txtBuscarP.getText().trim();
+          try{ String NombreVideoJuego = txtBuscarP.getText().trim();
             Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD1?useSSL=false","root","lfsr1999");
-            PreparedStatement pst = cn.prepareStatement("update MantenimientoPeliculas set AutorPelicula=?,Pelicula=?,Categoria=?,Clasificación=?, Pelicula = " + Pelicula);
+            PreparedStatement pst = cn.prepareStatement("update MantenimientoProductos set AutorVideoJuego=?,NombreVideoJuego=?,Categoria=?,Clasificación=?, NombreVideoJuego = " + NombreVideoJuego);
 
-           txtAutorPelicula.setText("");
+           txtAutor.setText("");
             txtNombreProducto.setText("");
             txtCategoria.setText("");
             txtClasificacion.setText("");
@@ -266,7 +271,7 @@ public class MantenimientoProducto extends javax.swing.JFrame {
         }
 
      Object  [] fila=new Object [4];
-        fila[0]=txtAutorPelicula.getText();
+        fila[0]=txtAutor.getText();
         fila[1]=txtNombreProducto.getText();
         fila[2]=txtCategoria.getText();
         fila[3]=txtClasificacion.getText();
@@ -294,7 +299,7 @@ public class MantenimientoProducto extends javax.swing.JFrame {
 
             pst.setString(1, txtBuscarP.getText().trim());
             
-            txtAutorPelicula.setText("");
+            txtAutor.setText("");
             txtNombreProducto.setText("");
             txtCategoria.setText("");
             txtClasificacion.setText("");
@@ -305,8 +310,8 @@ public class MantenimientoProducto extends javax.swing.JFrame {
         } catch (Exception e) {
         }
 
-        DefaultTableModel modelo = (DefaultTableModel) tblDatos2.getModel();
-        int a=tblDatos2.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tblDatos3.getModel();
+        int a=tblDatos3.getSelectedRow();
         if (a<0){
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
         }else{
@@ -338,21 +343,23 @@ public class MantenimientoProducto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MantenimientoProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenimientoVideoJuegos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MantenimientoProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenimientoVideoJuegos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MantenimientoProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenimientoVideoJuegos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MantenimientoProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenimientoVideoJuegos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MantenimientoProducto().setVisible(true);
+                new MantenimientoVideoJuegos().setVisible(true);
             }
         });
     }
@@ -371,8 +378,8 @@ public class MantenimientoProducto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_status;
-    private javax.swing.JTable tblDatos2;
-    private javax.swing.JTextField txtAutorPelicula;
+    private javax.swing.JTable tblDatos3;
+    private javax.swing.JTextField txtAutor;
     private javax.swing.JTextField txtBuscarP;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtClasificacion;

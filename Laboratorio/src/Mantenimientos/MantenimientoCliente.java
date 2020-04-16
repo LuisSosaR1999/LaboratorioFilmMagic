@@ -54,6 +54,10 @@ public class MantenimientoCliente extends javax.swing.JFrame {
         tblDatos = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         label_status = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtEdad = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,9 +112,17 @@ public class MantenimientoCliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Direccion", "Correo", "Telefono"
+                "Codigo", "Nombre", "Direccion", "Correo", "Telefono", "Edad"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblDatos);
 
         jButton5.setText("Fechas");
@@ -120,46 +132,14 @@ public class MantenimientoCliente extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("Edad");
+
+        jLabel8.setText("Codigo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(34, 34, 34)
-                        .addComponent(txtTelefono))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombreCliente)
-                            .addComponent(txtDireccion)
-                            .addComponent(txtCorreo))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(196, 196, 196)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton3))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(buscar)
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4)
-                        .addGap(124, 124, 124))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(241, 241, 241)
                 .addComponent(jLabel1)
@@ -169,11 +149,55 @@ public class MantenimientoCliente extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87))
             .addGroup(layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(jButton5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTelefono)
+                            .addComponent(txtEdad)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel8))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombreCliente)
+                            .addComponent(txtDireccion)
+                            .addComponent(txtCorreo)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(196, 196, 196)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jButton3)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addGap(124, 124, 124))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton5)
+                                    .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(40, 40, 40))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,44 +206,49 @@ public class MantenimientoCliente extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jLabel8)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel4)
-                                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3)
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton5)
-                    .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton5)
+                            .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(32, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -232,21 +261,25 @@ public class MantenimientoCliente extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
           try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD?useSSL=false", "root", "lfsr1999");
-            PreparedStatement pst = cn.prepareStatement("insert into MantenimientoClientes values(?,?,?,?,?)");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD1?useSSL=false", "root", "lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("insert into MantenimientoClientes values(?,?,?,?,?,?)");
             
             pst.setString(1, "0");
-            pst.setString(2, txtNombreCliente.getText().trim());
-            pst.setString(3, txtDireccion.getText().trim());
-            pst.setString(4, txtCorreo.getText().trim());
-            pst.setString(5, txtTelefono.getText().trim());
+            pst.setString(2,txtCodigo.getText().trim());
+            pst.setString(3, txtNombreCliente.getText().trim());
+            pst.setString(4, txtDireccion.getText().trim());
+            pst.setString(5, txtCorreo.getText().trim());
+            pst.setString(6, txtTelefono.getText().trim());
+            pst.setString(7, txtEdad.getText().trim());
            
             pst.executeUpdate();
             
+            txtCodigo.setText("");
             txtNombreCliente.setText("");
             txtDireccion.setText("");
             txtCorreo.setText("");
             txtTelefono.setText("");
+            txtEdad.setText("");
             
             label_status.setText("Registro exitoso.");
             
@@ -254,12 +287,13 @@ public class MantenimientoCliente extends javax.swing.JFrame {
             
         }
           DefaultTableModel modelo = (DefaultTableModel) tblDatos.getModel();
-        Object  [] fila=new Object [4];
-        fila[0]=txtNombreCliente.getText();
-        fila[1]=txtDireccion.getText();
-        fila[2]=txtCorreo.getText();
-        fila[3]=txtTelefono.getText();
-        
+        Object  [] fila=new Object [7];
+        fila[0]=txtCodigo.getText();
+        fila[1]=txtNombreCliente.getText();
+        fila[2]=txtDireccion.getText();
+        fila[3]=txtCorreo.getText();
+        fila[4]=txtTelefono.getText();
+        fila[5]=txtEdad.getText();
         modelo.addRow(fila);
         tblDatos.setModel(modelo);
         
@@ -270,13 +304,15 @@ public class MantenimientoCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         try{ String Nombre = buscar.getText().trim();
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD?useSSL=false","root","lfsr1999");
-            PreparedStatement pst = cn.prepareStatement("update MantenimientoClientes set Nombre=?,Dirección=?,Correo=?,Telefono=?, Nombre = " + Nombre);
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD1?useSSL=false","root","lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("update MantenimientoClientes set Codigo=?,Nombre=?,Dirección=?,Correo=?,Telefono=?,Edad=?, Nombre = " + Nombre);
 
+            txtCodigo.setText("");
             txtNombreCliente.setText("");
             txtDireccion.setText("");
             txtCorreo.setText("");
             txtTelefono.setText("");
+            txtEdad.setText("");
           
             pst.executeUpdate();
 
@@ -286,11 +322,13 @@ public class MantenimientoCliente extends javax.swing.JFrame {
 
         }
 
-        String [] datos=new String [5];
-        datos[0]=txtNombreCliente.getText();
-        datos[1]=txtDireccion.getText();
-        datos[2]=txtCorreo.getText();
-        datos[3]=txtTelefono.getText();
+        Object  [] fila=new Object [7];
+        fila[0]=txtCodigo.getText();
+        fila[1]=txtNombreCliente.getText();
+        fila[2]=txtDireccion.getText();
+        fila[3]=txtCorreo.getText();
+        fila[4]=txtTelefono.getText();
+        fila[5]=txtEdad.getText();
         int i = 0;
                                           
         
@@ -301,18 +339,19 @@ public class MantenimientoCliente extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
           try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD?useSSL=false", "root", "lfsr1999");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD1?useSSL=false", "root", "lfsr1999");
             PreparedStatement pst = cn.prepareStatement("delete from MantenimientoClientes where Nombre = ?" );
 
             pst.setString(1, buscar.getText().trim());
 
             pst.executeUpdate();
 
+            txtCodigo.setText("");
             txtNombreCliente.setText("");
             txtDireccion.setText("");
             txtCorreo.setText("");
             txtTelefono.setText("");
-            buscar.setText("");
+            txtEdad.setText("");
 
             label_status.setText("Registro Eliminado con exito");
 
@@ -340,17 +379,19 @@ public class MantenimientoCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         
          try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD?useSSL=false", "root", "lfsr1999");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD1?useSSL=false", "root", "lfsr1999");
             PreparedStatement pst = cn.prepareStatement("select * from MantenimientoClientes where Nombre = ?");
             pst.setString(1, buscar.getText().trim());
 
             ResultSet rs = pst.executeQuery();
 
             if(rs.next()){
+            txtCodigo.setText("");
             txtNombreCliente.setText("");
             txtDireccion.setText("");
             txtCorreo.setText("");
             txtTelefono.setText("");
+            txtEdad.setText("");
            
             } else {
                 JOptionPane.showMessageDialog(null, "Empleado no registrado.");
@@ -423,11 +464,15 @@ public class MantenimientoCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_status;
     private javax.swing.JTable tblDatos;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtNombreCliente;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
