@@ -5,6 +5,13 @@
  */
 package Mantenimientos;
 
+import Procesos.Fechas;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author lsosa
@@ -44,6 +51,8 @@ public class MantenimientoProducto extends javax.swing.JFrame {
         txtBuscarP = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDatos2 = new javax.swing.JTable();
+        label_status = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,10 +67,25 @@ public class MantenimientoProducto extends javax.swing.JFrame {
         jLabel5.setText("Clasificacion:");
 
         jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Agregar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Buscar");
 
@@ -76,6 +100,13 @@ public class MantenimientoProducto extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(tblDatos2);
+
+        jButton5.setText("Fechas");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,7 +145,11 @@ public class MantenimientoProducto extends javax.swing.JFrame {
                         .addComponent(txtBuscarP, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(49, 49, 49))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addGap(194, 194, 194)
                 .addComponent(jButton4)
                 .addGap(76, 76, 76))
             .addGroup(layout.createSequentialGroup()
@@ -156,15 +191,135 @@ public class MantenimientoProducto extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(txtBuscarP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(11, 11, 11)
-                .addComponent(jButton4)
-                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(label_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5)))
+                .addGap(9, 9, 9)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD?useSSL=false", "root", "lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("insert into MantenimientoProductos values(?,?,?,?)");
+            
+            pst.setString(1, "0");
+            pst.setString(2, txtProducto.getText().trim());
+            pst.setString(3, txtNombreProducto.getText().trim());
+            pst.setString(4, txtCategoria.getText().trim());
+            pst.setString(5, txtClasificacion.getText().trim());
+           
+            pst.executeUpdate();
+            
+            txtProducto.setText("");
+            txtNombreProducto.setText("");
+            txtCategoria.setText("");
+            txtClasificacion.setText("");
+            
+            label_status.setText("Registro exitoso.");
+            
+        }catch (Exception e){
+            
+        }
+          DefaultTableModel modelo = (DefaultTableModel) tblDatos2.getModel();
+        Object  [] fila=new Object [4];
+        fila[0]=txtProducto.getText();
+        fila[1]=txtNombreProducto.getText();
+        fila[2]=txtCategoria.getText();
+        fila[3]=txtClasificacion.getText();
+        
+        modelo.addRow(fila);
+        tblDatos2.setModel(modelo);
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+          try{ String NombreProducto = txtBuscarP.getText().trim();
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD?useSSL=false","root","lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("update MantenimientoProductos set Producto=?,NombreProducto=?,Categoria=?,Clasificación=?, NombreProducto = " + NombreProducto);
+
+           txtProducto.setText("");
+            txtNombreProducto.setText("");
+            txtCategoria.setText("");
+            txtClasificacion.setText("");
+            
+            pst.executeUpdate();
+
+            label_status.setText("Registro Editado con exito");
+
+        } catch (Exception e) {
+
+        }
+
+     Object  [] fila=new Object [4];
+        fila[0]=txtProducto.getText();
+        fila[1]=txtNombreProducto.getText();
+        fila[2]=txtCategoria.getText();
+        fila[3]=txtClasificacion.getText();
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+         Fechas fe=new Fechas();
+        fe.setVisible(true);
+        this.setVisible(false);
+        
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD?useSSL=false", "root", "lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("delete from MantenimientoProductos where NombreProducto = ?" );
+
+            pst.setString(1, txtBuscarP.getText().trim());
+            
+            txtProducto.setText("");
+            txtNombreProducto.setText("");
+            txtCategoria.setText("");
+            txtClasificacion.setText("");
+            pst.executeUpdate();
+            
+            label_status.setText("Registro Eliminado con exito");
+
+        } catch (Exception e) {
+        }
+
+        DefaultTableModel modelo = (DefaultTableModel) tblDatos2.getModel();
+        int a=tblDatos2.getSelectedRow();
+        if (a<0){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+        }else{
+            int confirmar = JOptionPane.showConfirmDialog(null, "Esta seguro que desea eliminar el registro?");
+            if (JOptionPane.OK_OPTION == confirmar){
+                modelo.removeRow(a);
+                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+            }
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,6 +362,7 @@ public class MantenimientoProducto extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -214,6 +370,7 @@ public class MantenimientoProducto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label_status;
     private javax.swing.JTable tblDatos2;
     private javax.swing.JTextField txtBuscarP;
     private javax.swing.JTextField txtCategoria;

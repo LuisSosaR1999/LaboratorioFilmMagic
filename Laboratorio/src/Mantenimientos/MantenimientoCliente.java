@@ -5,6 +5,14 @@
  */
 package Mantenimientos;
 
+import Procesos.Fechas;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author lsosa
@@ -40,19 +48,35 @@ public class MantenimientoCliente extends javax.swing.JFrame {
         txtDireccion = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
-        txtBuscar = new javax.swing.JTextField();
+        buscar = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
+        label_status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Mantenimiento De Clientes");
 
@@ -66,13 +90,18 @@ public class MantenimientoCliente extends javax.swing.JFrame {
 
         jLabel6.setText("Buscar:");
 
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+        buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
+                buscarActionPerformed(evt);
             }
         });
 
         jButton4.setText("Buscar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         tblDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,6 +114,11 @@ public class MantenimientoCliente extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblDatos);
 
         jButton5.setText("Fechas");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,7 +154,7 @@ public class MantenimientoCliente extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(txtBuscar)
+                        .addComponent(buscar)
                         .addGap(37, 37, 37))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -135,7 +169,9 @@ public class MantenimientoCliente extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87))
             .addGroup(layout.createSequentialGroup()
-                .addGap(267, 267, 267)
+                .addGap(115, 115, 115)
+                .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
                 .addComponent(jButton5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -174,22 +210,169 @@ public class MantenimientoCliente extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)))
-                .addGap(2, 2, 2)
-                .addComponent(jButton5)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton5)
+                    .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
+    }//GEN-LAST:event_buscarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+          try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD?useSSL=false", "root", "lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("insert into MantenimientoClientes values(?,?,?,?,?)");
+            
+            pst.setString(1, "0");
+            pst.setString(2, txtNombreCliente.getText().trim());
+            pst.setString(3, txtDireccion.getText().trim());
+            pst.setString(4, txtCorreo.getText().trim());
+            pst.setString(5, txtTelefono.getText().trim());
+           
+            pst.executeUpdate();
+            
+            txtNombreCliente.setText("");
+            txtDireccion.setText("");
+            txtCorreo.setText("");
+            txtTelefono.setText("");
+            
+            label_status.setText("Registro exitoso.");
+            
+        }catch (Exception e){
+            
+        }
+          DefaultTableModel modelo = (DefaultTableModel) tblDatos.getModel();
+        Object  [] fila=new Object [4];
+        fila[0]=txtNombreCliente.getText();
+        fila[1]=txtDireccion.getText();
+        fila[2]=txtCorreo.getText();
+        fila[3]=txtTelefono.getText();
+        
+        modelo.addRow(fila);
+        tblDatos.setModel(modelo);
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        try{ String Nombre = buscar.getText().trim();
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD?useSSL=false","root","lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("update MantenimientoClientes set Nombre=?,Dirección=?,Correo=?,Telefono=?, Nombre = " + Nombre);
+
+            txtNombreCliente.setText("");
+            txtDireccion.setText("");
+            txtCorreo.setText("");
+            txtTelefono.setText("");
+          
+            pst.executeUpdate();
+
+            label_status.setText("Registro Editado con exito");
+
+        } catch (Exception e) {
+
+        }
+
+        String [] datos=new String [5];
+        datos[0]=txtNombreCliente.getText();
+        datos[1]=txtDireccion.getText();
+        datos[2]=txtCorreo.getText();
+        datos[3]=txtTelefono.getText();
+        int i = 0;
+                                          
+        
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+          try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD?useSSL=false", "root", "lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("delete from MantenimientoClientes where Nombre = ?" );
+
+            pst.setString(1, buscar.getText().trim());
+
+            pst.executeUpdate();
+
+            txtNombreCliente.setText("");
+            txtDireccion.setText("");
+            txtCorreo.setText("");
+            txtTelefono.setText("");
+            buscar.setText("");
+
+            label_status.setText("Registro Eliminado con exito");
+
+        } catch (Exception e) {
+        }
+
+        DefaultTableModel modelo = (DefaultTableModel) tblDatos.getModel();
+        int a=tblDatos.getSelectedRow();
+        if (a<0){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+        }else{
+            int confirmar = JOptionPane.showConfirmDialog(null, "Esta seguro que desea eliminar el registro?");
+            if (JOptionPane.OK_OPTION == confirmar){
+                modelo.removeRow(a);
+                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+            }
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+         try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD?useSSL=false", "root", "lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("select * from MantenimientoClientes where Nombre = ?");
+            pst.setString(1, buscar.getText().trim());
+
+            ResultSet rs = pst.executeQuery();
+
+            if(rs.next()){
+            txtNombreCliente.setText("");
+            txtDireccion.setText("");
+            txtCorreo.setText("");
+            txtTelefono.setText("");
+           
+            } else {
+                JOptionPane.showMessageDialog(null, "Empleado no registrado.");
+            }
+
+        }catch (Exception e){
+
+        }
+
+        
+        
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        Fechas fe=new Fechas();
+        fe.setVisible(true);
+        this.setVisible(false);
+        
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,6 +411,7 @@ public class MantenimientoCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField buscar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -240,8 +424,8 @@ public class MantenimientoCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label_status;
     private javax.swing.JTable tblDatos;
-    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombreCliente;
