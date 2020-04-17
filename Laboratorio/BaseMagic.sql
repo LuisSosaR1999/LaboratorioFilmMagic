@@ -47,16 +47,20 @@ select * from MantenimientoVideoJuego;
 use MBD1;
 
 
-create table Fechass
+create table Fechasss
 (
-ID int primary key,
+ID int(20) auto_increment primary key,
 Nombre varchar(60) not null,
-Producto varchar(60) not null,
-FechaAlquiler varchar(50)not null,
-FechaLimite varchar(50) not null
-);
+DiasAlquilados varchar(50) not null,
+DiaAlquiler varchar(50) not null,
+MesAlquiler varchar(50)not null,
+AñoAlquiler varchar(50) not null,
+DiaLimite varchar (50) not null,
+MesLimite varchar (50) not null,
+AñoLimite varchar(50) not null
+)engine=InnoDB;
 
 use MBD1;
-select * from Fechass;
+select * from Fechasss;
 
 
