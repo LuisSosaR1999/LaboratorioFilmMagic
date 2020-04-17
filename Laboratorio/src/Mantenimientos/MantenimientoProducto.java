@@ -9,6 +9,7 @@ import Procesos.Fechas;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -88,6 +89,11 @@ public class MantenimientoProducto extends javax.swing.JFrame {
         });
 
         jButton4.setText("Buscar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Buscar");
 
@@ -211,8 +217,8 @@ public class MantenimientoProducto extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD1?useSSL=false", "root", "lfsr1999");
-            PreparedStatement pst = cn.prepareStatement("insert into MantenimientoPeliculas values(?,?,?,?)");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/MBD1?useSSL=false", "root", "lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("insert into MantenimientoPelicula values(?,?,?,?,?)");
             
             pst.setString(1, "0");
             pst.setString(2, txtAutorPelicula.getText().trim());
@@ -248,15 +254,17 @@ public class MantenimientoProducto extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-          try{ String Pelicula = txtBuscarP.getText().trim();
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD1?useSSL=false","root","lfsr1999");
-            PreparedStatement pst = cn.prepareStatement("update MantenimientoPeliculas set AutorPelicula=?,Pelicula=?,Categoria=?,Clasificación=?, Pelicula = " + Pelicula);
+         try{ String Pelicula = txtBuscarP.getText().trim();
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/MBD1?useSSL=false","root","lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("update MantenimientoPelicula set AutorPelicula=?,Pelicula=?,Categoria=?,Clasificación=? where ID = " + Pelicula);
 
-           txtAutorPelicula.setText("");
-            txtNombreProducto.setText("");
-            txtCategoria.setText("");
-            txtClasificacion.setText("");
-            
+       
+            pst.setString(1, "0");
+            pst.setString(2, txtAutorPelicula.getText().trim());
+            pst.setString(3, txtNombreProducto.getText().trim());
+            pst.setString(4, txtCategoria.getText().trim());
+            pst.setString(5, txtClasificacion.getText().trim());
+          
             pst.executeUpdate();
 
             label_status.setText("Registro Editado con exito");
@@ -265,13 +273,16 @@ public class MantenimientoProducto extends javax.swing.JFrame {
 
         }
 
-     Object  [] fila=new Object [4];
+        Object  [] fila=new Object [7];
+        //fila[0]=txtCodigo.getText();
         fila[0]=txtAutorPelicula.getText();
         fila[1]=txtNombreProducto.getText();
         fila[2]=txtCategoria.getText();
         fila[3]=txtClasificacion.getText();
         
-        
+        int i = 0;
+                                  
+                                      
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -289,8 +300,8 @@ public class MantenimientoProducto extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD1?useSSL=false", "root", "lfsr1999");
-            PreparedStatement pst = cn.prepareStatement("delete from MantenimientoProductos where NombreProducto = ?" );
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/MBD1?useSSL=false", "root", "lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("delete from MantenimientoPelicula where ID = ?" );
 
             pst.setString(1, txtBuscarP.getText().trim());
             
@@ -320,6 +331,35 @@ public class MantenimientoProducto extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+      try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/MBD1?useSSL=false", "root", "lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("select * from MantenimientoCliente where ID = ?");
+            pst.setString(1, txtBuscarP.getText().trim());
+
+            ResultSet rs = pst.executeQuery();
+
+            if(rs.next()){
+           txtAutorPelicula.setText(rs.getString("AutorPelicula"));
+            txtNombreProducto.setText(rs.getString("Pelicula"));
+            txtCategoria.setText(rs.getString("Categoria"));
+            txtClasificacion.setText(rs.getString("Clasificación"));
+         
+ 
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Empleado no registrado.");
+            }
+
+        }catch (Exception e){
+
+        }
+        
+       
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

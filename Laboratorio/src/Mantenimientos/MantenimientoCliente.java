@@ -56,8 +56,6 @@ public class MantenimientoCliente extends javax.swing.JFrame {
         label_status = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtEdad = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,8 +132,6 @@ public class MantenimientoCliente extends javax.swing.JFrame {
 
         jLabel7.setText("Edad");
 
-        jLabel8.setText("Codigo");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,14 +159,12 @@ public class MantenimientoCliente extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel2))
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombreCliente)
                             .addComponent(txtDireccion)
-                            .addComponent(txtCorreo)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtCorreo))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,10 +201,7 @@ public class MantenimientoCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel8)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -226,8 +217,7 @@ public class MantenimientoCliente extends javax.swing.JFrame {
                             .addComponent(jButton5)
                             .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(32, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -247,8 +237,8 @@ public class MantenimientoCliente extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
-                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -261,20 +251,20 @@ public class MantenimientoCliente extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
           try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD1?useSSL=false", "root", "lfsr1999");
-            PreparedStatement pst = cn.prepareStatement("insert into MantenimientoClientes values(?,?,?,?,?,?)");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/MBD1?useSSL=false", "root", "lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("insert into MantenimientoCliente values(?,?,?,?,?,?)");
             
             pst.setString(1, "0");
-            pst.setString(2,txtCodigo.getText().trim());
-            pst.setString(3, txtNombreCliente.getText().trim());
-            pst.setString(4, txtDireccion.getText().trim());
-            pst.setString(5, txtCorreo.getText().trim());
-            pst.setString(6, txtTelefono.getText().trim());
-            pst.setString(7, txtEdad.getText().trim());
+          //  pst.setString(1,buscar.getText().trim());
+            pst.setString(2, txtNombreCliente.getText().trim());
+            pst.setString(3, txtDireccion.getText().trim());
+            pst.setString(4, txtCorreo.getText().trim());
+            pst.setString(5, txtTelefono.getText().trim());
+            pst.setString(6, txtEdad.getText().trim());
            
             pst.executeUpdate();
             
-            txtCodigo.setText("");
+            buscar.setText("");
             txtNombreCliente.setText("");
             txtDireccion.setText("");
             txtCorreo.setText("");
@@ -288,12 +278,12 @@ public class MantenimientoCliente extends javax.swing.JFrame {
         }
           DefaultTableModel modelo = (DefaultTableModel) tblDatos.getModel();
         Object  [] fila=new Object [7];
-        fila[0]=txtCodigo.getText();
-        fila[1]=txtNombreCliente.getText();
-        fila[2]=txtDireccion.getText();
-        fila[3]=txtCorreo.getText();
-        fila[4]=txtTelefono.getText();
-        fila[5]=txtEdad.getText();
+        
+        fila[0]=txtNombreCliente.getText();
+        fila[1]=txtDireccion.getText();
+        fila[2]=txtCorreo.getText();
+        fila[3]=txtTelefono.getText();
+        fila[4]=txtEdad.getText();
         modelo.addRow(fila);
         tblDatos.setModel(modelo);
         
@@ -303,16 +293,16 @@ public class MantenimientoCliente extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        try{ String Nombre = buscar.getText().trim();
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD1?useSSL=false","root","lfsr1999");
-            PreparedStatement pst = cn.prepareStatement("update MantenimientoClientes set Codigo=?,Nombre=?,Dirección=?,Correo=?,Telefono=?,Edad=?, Nombre = " + Nombre);
+        try{ String Codigo = buscar.getText().trim();
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/MBD1?useSSL=false","root","lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("update MantenimientoCliente set Nombre=?,Dirección=?,Correo=?,Telefono=?,Edad=? where ID = " + Codigo);
 
-            txtCodigo.setText("");
-            txtNombreCliente.setText("");
-            txtDireccion.setText("");
-            txtCorreo.setText("");
-            txtTelefono.setText("");
-            txtEdad.setText("");
+       
+            pst.setString(1, txtNombreCliente.getText().trim());
+            pst.setString(2, txtDireccion.getText().trim());
+            pst.setString(3, txtCorreo.getText().trim());
+            pst.setString(4, txtTelefono.getText().trim());
+            pst.setString(5, txtEdad.getText().trim());
           
             pst.executeUpdate();
 
@@ -323,12 +313,12 @@ public class MantenimientoCliente extends javax.swing.JFrame {
         }
 
         Object  [] fila=new Object [7];
-        fila[0]=txtCodigo.getText();
-        fila[1]=txtNombreCliente.getText();
-        fila[2]=txtDireccion.getText();
-        fila[3]=txtCorreo.getText();
-        fila[4]=txtTelefono.getText();
-        fila[5]=txtEdad.getText();
+        //fila[0]=txtCodigo.getText();
+        fila[0]=txtNombreCliente.getText();
+        fila[1]=txtDireccion.getText();
+        fila[2]=txtCorreo.getText();
+        fila[3]=txtTelefono.getText();
+        fila[4]=txtEdad.getText();
         int i = 0;
                                           
         
@@ -339,14 +329,14 @@ public class MantenimientoCliente extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
           try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD1?useSSL=false", "root", "lfsr1999");
-            PreparedStatement pst = cn.prepareStatement("delete from MantenimientoClientes where Nombre = ?" );
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/MBD1?useSSL=false", "root", "lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("delete from MantenimientoCliente where ID = ?" );
 
             pst.setString(1, buscar.getText().trim());
 
             pst.executeUpdate();
 
-            txtCodigo.setText("");
+            buscar.setText("");
             txtNombreCliente.setText("");
             txtDireccion.setText("");
             txtCorreo.setText("");
@@ -379,20 +369,21 @@ public class MantenimientoCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         
          try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Mantenimientos_BD1?useSSL=false", "root", "lfsr1999");
-            PreparedStatement pst = cn.prepareStatement("select * from MantenimientoClientes where Nombre = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/MBD1?useSSL=false", "root", "lfsr1999");
+            PreparedStatement pst = cn.prepareStatement("select * from MantenimientoCliente where ID = ?");
             pst.setString(1, buscar.getText().trim());
 
             ResultSet rs = pst.executeQuery();
 
             if(rs.next()){
-            txtCodigo.setText("");
-            txtNombreCliente.setText("");
-            txtDireccion.setText("");
-            txtCorreo.setText("");
-            txtTelefono.setText("");
-            txtEdad.setText("");
-           
+           txtNombreCliente.setText(rs.getString("Nombre"));
+            txtDireccion.setText(rs.getString("Dirección"));
+            txtCorreo.setText(rs.getString("Correo"));
+            txtTelefono.setText(rs.getString("Telefono"));
+            txtEdad.setText(rs.getString("Edad"));
+            
+ 
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Empleado no registrado.");
             }
@@ -465,11 +456,9 @@ public class MantenimientoCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_status;
     private javax.swing.JTable tblDatos;
-    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEdad;
