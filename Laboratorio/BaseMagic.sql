@@ -51,7 +51,6 @@ create table Fechasss
 (
 ID int(20) auto_increment primary key,
 Nombre varchar(60) not null,
-DiasAlquilados varchar(50) not null,
 DiaAlquiler varchar(50) not null,
 MesAlquiler varchar(50)not null,
 AñoAlquiler varchar(50) not null,
